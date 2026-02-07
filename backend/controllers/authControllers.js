@@ -1,24 +1,19 @@
-const { supabase } = require('../db/connectToSupaBase');
-const bcrypt = require('bcrypt');
+const supabase = require('../db/connectToSupaBase');
 
 const userSignUp = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name,email, password,phone_no,wallet_balance, } = req.body;
 
-        // Basic validation
-        if (!name || !email || !password) {
-            return res.status(400).json({
-                error: "Name, email and password are required",
-            });
+        if (!email || !password) {
+            return res.status(400).json({ error: "Email and password are required" });
         }
 
-        // 🔐 Step 1 — Create user in Supabase Auth
         const { data, error } = await supabase.auth.signUp({
+            name,
             email,
             password,
-            options: {
-                data: { name }, // saved in auth.users.user_metadata
-            },
+            phone_no,
+            wallet_balance, 
         });
 
         if (error) {
