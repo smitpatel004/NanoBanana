@@ -13,6 +13,7 @@
 @layer base {
   :root {
     color-scheme: dark;
+    scroll-behavior: smooth;
   }
 
   body {

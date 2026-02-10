@@ -12,9 +12,8 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
-
+var port = normalizePort(process.env.PORT || '3003');
+app.set('port', port)
 /**
  * Create HTTP server.
  */
@@ -87,5 +86,32 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
-  console.log('server is running on port',port)
+  console.log('server is running on port', port)
+}
+
+/**
+ * Graceful shutdown
+ */
+process.once('SIGUSR2', function () {
+  console.log('Received SIGUSR2 from nodemon, cleaning up...');
+  server.close(() => {
+    console.log('Closed out remaining connections (SIGUSR2)');
+    process.kill(process.pid, 'SIGUSR2');
+  });
+});
+
+process.on('SIGTERM', shutDown);
+process.on('SIGINT', shutDown);
+
+function shutDown() {
+  console.log('Received kill signal, shutting down gracefully');
+  server.close(() => {
+    console.log('Closed out remaining connections');
+    process.exit(0);
+  });
+
+  setTimeout(() => {
+    console.error('Could not close connections in time, forcefully shutting down');
+    process.exit(1);
+  }, 10000);
 }

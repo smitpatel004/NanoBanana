@@ -1,0 +1,5 @@
+{
+    "delay": "1000",
+    "verbose": true,
+    "exec": "npx kill-port 3003 && node ./bin/www"
+}

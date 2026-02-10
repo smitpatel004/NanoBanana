@@ -1,8 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Hero = () => {
+    const navigate = useNavigate();
+    const { isAuthenticated } = useAuth();
+
+    const handleTryNow = () => {
+        navigate('/studio')
+        // if (isAuthenticated) {
+        //     navigate('/studio');
+        // } else {
+        //     navigate('/login');
+        // }
+    };
+
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
             {/* Background Effects */}
@@ -69,6 +83,7 @@ const Hero = () => {
                     className="flex flex-col sm:flex-row gap-4 justify-center items-center"
                 >
                     <button
+                        onClick={handleTryNow}
                         className="group relative px-8 py-4 rounded-xl font-bold text-white overflow-hidden transition-all hover:scale-105"
                         style={{
                             background: '#3b82f6',
