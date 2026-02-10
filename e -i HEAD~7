@@ -1,0 +1,11 @@
+[33m2d0efd3[m [first commit]
+[33m4d0691e[m [add frontend folder]
+[33m9e6b1b8[m [add backend]
+[33m18208be[m [update read me file]
+[33m16a0a6d[m authentication 50% done and frontend homepage
+[33ma2d29f1[m Merge branch 'main' of https://github.com/smitpatel004/NanoBanana
+[33m66816cd[m set env variables
+[33mf009e24[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m [authentication with supabase login and singup]
+[33m987f9c3[m feat: Set up full-stack AI image merge studio with Gemini AI integration and user authentication.
+[33m5fa6626[m feat: add Google Cloud service account key for nanobanana project
+[33m501d6ef[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m build: add .gitignore to exclude node_modules, .env, and a service account key.
