@@ -1,8 +1,9 @@
-const supabase = require('../db/connectToSupaBase');
+const { supabase } = require('../db/connectToSupaBase');
+const bcrypt = require('bcrypt');
 
 const userSignUp = async (req, res) => {
     try {
-        const { name,email, password,phone_no,wallet_balance, } = req.body;
+        const { name, email, password, phone_no, wallet_balance, } = req.body;
 
         if (!email || !password) {
             return res.status(400).json({ error: "Email and password are required" });
@@ -13,7 +14,7 @@ const userSignUp = async (req, res) => {
             email,
             password,
             phone_no,
-            wallet_balance, 
+            wallet_balance,
         });
 
         if (error) {
